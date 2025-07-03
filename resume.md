@@ -1,9 +1,11 @@
-# 🧑‍💼 Madhusha Prasad
+<center>
+<h1>Madhusha Prasad Silva</h1>
 
 📍 45A, Isurupura Road, Gamunupura, Kothalawala, Kaduwela  
 📞 +94 764727839  
 📧 [madushaprasad21@gmail.com](mailto:madushaprasad21@gmail.com)  
 🌐 [Website](https://madhushaprasad.netlify.app) | [GitHub](https://github.com/MadhushaPrasad) | [LinkedIn](https://www.linkedin.com/in/madhusha-prasad-045a82187)
+</center>
 
 ---
 
