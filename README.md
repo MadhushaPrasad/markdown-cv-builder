@@ -35,6 +35,10 @@ Make sure dependencies like `marked`, `puppeteer`, and `express` are installed.
 
 ---
 
+Certainly! Here's the **updated Usage section** reflecting your `package.json` scripts (`generate`, `serve`, and `dev`):
+
+---
+
 ## 💻 Usage
 
 ### Generate PDF
@@ -43,19 +47,31 @@ Make sure dependencies like `marked`, `puppeteer`, and `express` are installed.
 npm run generate
 ```
 
-Or directly:
+This runs:
 
 ```bash
 node markdown-cv-builder.js resume.md modern resume.pdf
 ```
 
+---
+
 ### Preview in Browser
 
 ```bash
-node markdown-cv-builder.js resume.md modern resume.pdf --serve
+npm run serve
 ```
 
 Then open [http://localhost:3000](http://localhost:3000) to see your resume live.
+
+---
+
+### Development Mode (Auto-reload on changes)
+
+```bash
+npm run dev
+```
+
+This command runs the server with `nodemon`, watching for changes in `resume.md` and files inside the `themes/` folder (`.md` and `.html` extensions). The preview server will automatically restart on changes, helping your development workflow.
 
 ---
 
