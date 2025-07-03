@@ -2,11 +2,18 @@
   "name": "markdown-cv-builder",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "node markdown-cv-builder.js resume.md modern resume.pdf"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "marked": "^16.0.0",
+    "puppeteer": "^24.11.2"
+  }
 }
