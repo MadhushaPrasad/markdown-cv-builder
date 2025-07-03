@@ -77,14 +77,14 @@ This command runs the server with `nodemon`, watching for changes in `resume.md`
 
 ## 📝 Markdown Resume Example (`resume.md`)
 
-```markdown
-# John Doe
+# Madhusha Prasad
 
 ## Experience
 
 ### Software Engineer – TechCorp
-* 2020 – Present
-* Developed scalable web applications.
+
+- 2020 – Present
+- Developed scalable web applications.
 
 ## Education
 
@@ -96,7 +96,6 @@ University of Example – 2016–2020
 - JavaScript
 - React
 - Node.js
-```
 
 ---
 
