@@ -1,9 +1,11 @@
 import fs from 'fs'
 import path from 'path'
-import { marked } from 'marked'
 import { fileURLToPath } from 'url'
 import puppeteer from 'puppeteer'
+import MarkdownIt from 'markdown-it'
+import markdownItAttrs from 'markdown-it-attrs'
 
+// ES module __dirname workaround
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
@@ -12,22 +14,31 @@ const THEMES_DIR = path.join(__dirname, 'themes')
 export async function buildCV({ inputPath, theme = 'index', output = 'resume.pdf', serve = false }) {
   console.log('📄 Running markdown-cv-builder...')
   try {
+    // Read Markdown
     const markdown = fs.readFileSync(inputPath, 'utf-8')
-    const htmlContent = marked.parse(markdown)
 
-    const themePath = path.join(THEMES_DIR, `${theme}.html`)
-    if (!fs.existsSync(themePath)) throw new Error(`Theme '${theme}' not found in ${THEMES_DIR}`)
+    // Parse Markdown using markdown-it with attrs
+    const md = new MarkdownIt({ html: true }).use(markdownItAttrs)
+    const htmlContent = md.render(markdown)
+
+    // Read Theme Template
+    let themePath = path.join(THEMES_DIR, `${theme}.html`)
+    if (!fs.existsSync(themePath)) {
+      console.warn(`⚠️ Theme '${theme}' not found. Falling back to default theme`)
+      themePath = path.join(THEMES_DIR, `index.html`)
+    }
 
     const template = fs.readFileSync(themePath, 'utf-8')
-    const injectedPath = path.join(THEMES_DIR, 'injected.html')
+    const injectedPath = path.join(THEMES_DIR, 'index.html')
 
+    // Serve
     if (serve) {
       // Inject the rendered markdown into the injected.html file for Vite dev server
       fs.writeFileSync(injectedPath, template.replace('{{content}}', htmlContent))
-      console.log('⚡ Injected markdown into injected.html')
+      console.log('⚡ Injected markdown into index.html')
       console.log('👉 Now run: npm run dev (or pnpm run dev) to start Vite dev server')
     } else {
-      // Generate PDF directly
+      // Generate PDF
       const finalHtml = template.replace('{{content}}', htmlContent)
       const browser = await puppeteer.launch()
       const page = await browser.newPage()
@@ -41,11 +52,11 @@ export async function buildCV({ inputPath, theme = 'index', output = 'resume.pdf
   }
 }
 
-// CLI usage
-if (process.argv[1].endsWith('markdown-cv-builder.js')) {
+// CLI Entry Point
+if (process.argv[1].endsWith('index.js') || process.argv[1].endsWith('markdown-cv-builder.js')) {
   const args = process.argv.slice(2)
   const inputPath = args[0] || 'resume.md'
-  const theme = args[1] || 'modern'
+  const theme = args[1] || 'index'
   const output = args[2] || 'resume.pdf'
   const serve = args.includes('--serve')
 
