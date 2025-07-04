@@ -67,8 +67,16 @@ export async function buildCV({ inputPath, theme = 'index', output = 'resume.pdf
 
     // Serve
     if (serve) {
-      // Inject the rendered markdown into the injected.html file for Vite dev server
-      fs.writeFileSync(injectedPath, template.replace('{{content}}', htmlContent))
+      // Restore template first to avoid multiple injections
+      fs.writeFileSync(INDEX_PATH, TEMPLATE_CONTENT)
+
+      // Read again to inject into the fresh base
+      const freshTemplate = fs.readFileSync(INDEX_PATH, 'utf-8')
+
+      // Inject the rendered markdown
+      const injectedHTML = freshTemplate.replace('{{content}}', htmlContent)
+      fs.writeFileSync(INDEX_PATH, injectedHTML)
+
       console.log('⚡ Injected markdown into index.html')
       console.log('👉 Now run: npm run dev (or pnpm run dev) to start Vite dev server')
     } else {
