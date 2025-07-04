@@ -4,10 +4,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "node markdown-cv-builder.js resume.md modern resume.pdf",
-    "serve": "node markdown-cv-builder.js resume.md modern resume.pdf --serve",
-    "dev": "nodemon --watch resume.md --watch themes --ext md,html --exec \"node markdown-cv-builder.js resume.md modern resume.pdf --serve\""
+    "dev": "vite",
+    "build:theme": "vite build",
+    "inject": "node markdown-cv-builder.js resume.md modern resume.pdf --serve",
+    "generate": "node markdown-cv-builder.js resume.md modern resume.pdf"
   },
   "keywords": [],
   "author": "",
