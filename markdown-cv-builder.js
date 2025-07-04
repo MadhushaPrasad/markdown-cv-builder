@@ -1,17 +1,15 @@
 import fs from 'fs'
 import path from 'path'
 import { marked } from 'marked'
-import { readFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import puppeteer from 'puppeteer'
-import express from 'express'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const THEMES_DIR = path.join(__dirname, 'themes')
 
-export async function buildCV({ inputPath, theme = 'modern', output = 'resume.pdf', serve = false }) {
+export async function buildCV({ inputPath, theme = 'index', output = 'resume.pdf', serve = false }) {
   console.log('📄 Running markdown-cv-builder...')
   try {
     const markdown = fs.readFileSync(inputPath, 'utf-8')
@@ -21,14 +19,16 @@ export async function buildCV({ inputPath, theme = 'modern', output = 'resume.pd
     if (!fs.existsSync(themePath)) throw new Error(`Theme '${theme}' not found in ${THEMES_DIR}`)
 
     const template = fs.readFileSync(themePath, 'utf-8')
-    const finalHtml = template.replace('{{content}}', htmlContent)
+    const injectedPath = path.join(THEMES_DIR, 'injected.html')
 
     if (serve) {
-      const app = express()
-      app.get('/', (_, res) => res.send(finalHtml))
-      const port = 3000
-      app.listen(port, () => console.log(`🚀 Preview: http://localhost:${port}`))
+      // Inject the rendered markdown into the injected.html file for Vite dev server
+      fs.writeFileSync(injectedPath, template.replace('{{content}}', htmlContent))
+      console.log('⚡ Injected markdown into injected.html')
+      console.log('👉 Now run: npm run dev (or pnpm run dev) to start Vite dev server')
     } else {
+      // Generate PDF directly
+      const finalHtml = template.replace('{{content}}', htmlContent)
       const browser = await puppeteer.launch()
       const page = await browser.newPage()
       await page.setContent(finalHtml, { waitUntil: 'networkidle0' })
