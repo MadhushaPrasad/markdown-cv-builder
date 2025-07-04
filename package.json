@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build:theme": "vite build",
-    "inject": "node markdown-cv-builder.js resume.md index resume.pdf --serve",
-    "generate": "node markdown-cv-builder.js resume.md index resume.pdf"
+    "inject": "node index.js resume.md index resume.pdf --serve",
+    "generate": "node index.js resume.md index resume.pdf"
   },
   "keywords": [],
   "author": "",
