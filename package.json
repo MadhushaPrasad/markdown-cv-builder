@@ -4,6 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "npm run inject && vite",
     "dev": "vite",
     "build:theme": "vite build",
     "inject": "node index.js resume.md index resume.pdf --serve",
