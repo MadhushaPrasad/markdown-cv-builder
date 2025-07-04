@@ -1,0 +1,47 @@
+name: PNPM Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      # Checkout the code
+      - uses: actions/checkout@v4
+
+      # Setup Node.js + PNPM
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Install PNPM
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # Optional: Lint
+      - name: Run linter (if available)
+        run: pnpm lint
+        continue-on-error: true
+
+      # Optional: Run tests
+      - name: Run tests
+        run: pnpm test
+        continue-on-error: true
+
+      # Optional: Build step
+      - name: Build project (if needed)
+        run: pnpm build
+        continue-on-error: true
