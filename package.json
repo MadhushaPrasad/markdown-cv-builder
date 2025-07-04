@@ -4,10 +4,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "node markdown-cv-builder.js resume.md modern resume.pdf",
-    "serve": "node markdown-cv-builder.js resume.md modern resume.pdf --serve",
-    "dev": "nodemon --watch resume.md --watch themes --ext md,html --exec \"node markdown-cv-builder.js resume.md modern resume.pdf --serve\""
+    "start": "npm run inject && vite",
+    "dev": "vite",
+    "build:theme": "vite build",
+    "inject": "node index.js resume.md index resume.pdf --serve",
+    "generate": "node index.js resume.md index resume.pdf"
   },
   "keywords": [],
   "author": "",
@@ -15,10 +16,13 @@
   "description": "",
   "dependencies": {
     "express": "^5.1.0",
-    "marked": "^16.0.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-attrs": "^4.3.1",
     "puppeteer": "^24.11.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "@unocss/vite": "^66.3.2",
+    "unocss": "^66.3.2",
+    "vite": "^7.0.2"
   }
 }

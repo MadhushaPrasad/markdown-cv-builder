@@ -1,5 +1,0 @@
-{
-  "watch": ["resume.md", "themes"],
-  "ext": "md,html",
-  "exec": "node markdown-cv-builder.js resume.md modern resume.pdf --serve"
-}

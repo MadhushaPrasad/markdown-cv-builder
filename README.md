@@ -1,153 +1,169 @@
-# Markdown CV Builder
+# Markdown CV Builder — v2
 
-**Generate stylish, modern resumes from simple Markdown files!**
+**Generate stylish, modern resumes from Markdown with Vite, UnoCSS, and markdown-it!**
+
+---
+
+## ✅ Summary: v1 vs v2 Comparison
+
+| Feature              | v1 (Before)              | v2 (Now - Vite)                   |
+| -------------------- | ------------------------ | --------------------------------- |
+| **Live Preview**     | `nodemon` + Express      | ✅ Vite Dev Server                 |
+| **Hot Reload**       | ❌ Manual browser refresh | ✅ Automatic via Vite              |
+| **Markdown Parser**  | `marked` (basic)         | ✅ `markdown-it` + attrs           |
+| **Theme Styling**    | Manual CSS per theme     | ✅ UnoCSS utility-first            |
+| **Frontend Build**   | None                     | ✅ Vite bundler                    |
+| **Injection System** | Basic string replace     | ✅ Dynamic and revertible          |
+| **Dev Experience**   | CLI + Express            | ✅ Integrated & streamlined        |
+| **Custom Styling**   | Limited                  | ✅ Supports `.class{}` in Markdown |
+| **PDF Export**       | Puppeteer                | ✅ Puppeteer                       |
 
 ---
 
 ## 🚀 Overview
 
-`markdown-cv-builder` is a lightweight Node.js tool that converts your Markdown-formatted resume into a beautifully styled PDF or serves it as an interactive HTML preview.
+`markdown-cv-builder` is a streamlined toolchain for converting your Markdown resume into a responsive, beautifully styled PDF or live-preview web app.
 
-- Write your CV in Markdown — simple, readable, and easy to update.
-- Choose from customizable HTML themes.
-- Export to PDF using Puppeteer.
-- Preview live in the browser with a built-in Express server.
+* ⚡ Powered by [Vite](https://vitejs.dev/) for blazing-fast frontend builds.
+* 🎨 Styled using [UnoCSS](https://unocss.dev/) — instant utility classes.
+* ✍️ Written in Markdown, rendered with [markdown-it](https://github.com/markdown-it/markdown-it).
+* 📄 PDF generation via [Puppeteer](https://pptr.dev/).
+* 🔁 Live preview with automatic injection and hot reload.
 
 ---
 
-## ⚙️ Features
+## 🆕 What's New in v2
 
-- Convert Markdown to semantic HTML using [marked](https://github.com/markedjs/marked)
-- Render themes with customizable styles (`themes/` folder)
-- Generate PDF resumes using [Puppeteer](https://pptr.dev/)
-- Preview your resume locally with hot-reloading (via Express server)
-- Easy CLI usage for quick building and previewing
+✅ Replaced `marked` with `markdown-it` for better HTML and attribute support
+✅ Integrated UnoCSS for utility-first styling
+✅ Switched to Vite as frontend bundler and dev server
+✅ Updated CLI: cleaner commands, default theme fallback, and file restoration
+✅ Improved Dev Experience: No manual reloads — just write Markdown and preview instantly
 
 ---
 
 ## 📦 Installation
 
 ```bash
+pnpm install
+# or
 npm install
 ```
-
-Make sure dependencies like `marked`, `puppeteer`, and `express` are installed.
-
----
-
-Certainly! Here's the **updated Usage section** reflecting your `package.json` scripts (`generate`, `serve`, and `dev`):
 
 ---
 
 ## 💻 Usage
 
-### Generate PDF
+### 🖨️ Generate PDF Resume
 
 ```bash
-npm run generate
+pnpm run generate
 ```
 
-This runs:
-
-```bash
-node markdown-cv-builder.js resume.md modern resume.pdf
-```
+This builds a styled `resume.pdf` from your `resume.md` using Puppeteer.
 
 ---
 
-### Preview in Browser
+### 🌐 Preview Resume in Browser
 
 ```bash
-npm run serve
+pnpm run inject
+pnpm run dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000) to see your resume live.
+Or simply:
+
+```bash
+pnpm start
+```
+
+The resume will be injected into the `themes/index.html`, and Vite will serve it live on [http://localhost:5173](http://localhost:5173). Changes auto-refresh.
 
 ---
 
-### Development Mode (Auto-reload on changes)
+## 📝 Example `resume.md`
 
-```bash
-npm run dev
-```
-
-This command runs the server with `nodemon`, watching for changes in `resume.md` and files inside the `themes/` folder (`.md` and `.html` extensions). The preview server will automatically restart on changes, helping your development workflow.
-
----
-
-## 📝 Markdown Resume Example (`resume.md`)
-
+```markdown
 # Madhusha Prasad
 
-## Experience
+## 💼 Experience
 
-### Software Engineer – TechCorp
+### Software Engineer – TechCorp  
+*2020 – Present*  
+- Developed scalable web apps using React and Node.js.
 
-- 2020 – Present
-- Developed scalable web applications.
-
-## Education
+## 🎓 Education
 
 **B.Sc. in Computer Science**  
 University of Example – 2016–2020
 
-## Skills
+## 🛠️ Skills
 
 - JavaScript
-- React
-- Node.js
+- Laravel
+- Vue.js
+- Git & GitHub
+```
+
+You can add Tailwind-like utility classes using `{}`:
+
+```markdown
+# My Name {.text-blue-700 .text-4xl .font-bold}
+```
 
 ---
 
 ## 🎨 Themes
 
-Themes are HTML templates located in the `themes/` folder. The default is `modern.html` but you can add your own by following the pattern:
+Themes are located inside the `themes/` directory. The default is `index.html`.
+
+A theme includes a placeholder for Markdown content:
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Resume</title>
-  <style>
-    /* Your styles here */
-  </style>
-</head>
-<body>
+<div id="resume">
   {{content}}
-</body>
-</html>
+</div>
 ```
+
+It also includes a fallback welcome message when no content is injected.
 
 ---
 
-## 🔧 Configuration
-
-You can pass CLI arguments:
+## 🧪 CLI Options
 
 ```bash
-node markdown-cv-builder.js <markdown-file> <theme-name> <output-file> [--serve]
+node index.js <markdown-file> <theme-name> <output-file> [--serve]
 ```
 
-| Argument          | Description                               | Default      |
-| ----------------- | ----------------------------------------- | ------------ |
-| `<markdown-file>` | Path to your Markdown CV                  | `resume.md`  |
-| `<theme-name>`    | Theme template filename (without `.html`) | `modern`     |
-| `<output-file>`   | Output PDF filename                       | `resume.pdf` |
-| `--serve`         | Launch local preview server               | Off          |
+| Argument          | Description                              | Default      |
+| ----------------- | ---------------------------------------- | ------------ |
+| `<markdown-file>` | Path to your Markdown CV                 | `resume.md`  |
+| `<theme-name>`    | Name of the theme HTML file (no `.html`) | `index`      |
+| `<output-file>`   | PDF filename to generate                 | `resume.pdf` |
+| `--serve`         | Inject content and prepare dev preview   | Not enabled  |
+
+---
+
+## 🌈 UnoCSS Features
+
+You can use all Tailwind-compatible utilities like:
+
+* `text-lg`, `font-bold`, `mt-4`
+* `text-blue-700`, `bg-gray-100`
+* `grid`, `flex`, `rounded`, etc.
 
 ---
 
 ## 🤝 Contributing
 
-Feel free to submit issues or pull requests! You can add new themes, improve parsing, or enhance the CLI experience.
+Contributions are welcome! Create issues, suggest features, or send PRs. Add new themes, refine CLI logic, or improve styles with UnoCSS.
 
 ---
 
 ## 📄 License
 
-This package is licensed under the  MIT License - see the [LICENSE](https://github.com/MadhushaPrasad/markdown-cv-builder/blob/main/LICENSE) file for details.
+MIT © [Madhusha Prasad](https://github.com/MadhushaPrasad)
 
 ---
 
-*Built with ❤️ and Node.js*
+*Built with ❤️ using Node.js, Vite, UnoCSS, and markdown-it*
