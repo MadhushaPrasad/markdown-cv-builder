@@ -4,6 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "unocss:build": "unocss './**/*.{html,md,vue,js,ts}' -o dist/unocss.css",
     "start": "npm run inject && vite",
     "dev": "vite",
     "build:theme": "vite build",
@@ -21,6 +22,7 @@
     "puppeteer": "^24.11.2"
   },
   "devDependencies": {
+    "@unocss/cli": "^66.3.2",
     "@unocss/vite": "^66.3.2",
     "unocss": "^66.3.2",
     "vite": "^7.0.2"

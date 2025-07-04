@@ -6,6 +6,7 @@ export default defineConfig({
     presetWind3(),
     // ...custom presets
   ],
+  include: ['./themes/**/*.html', './resume.md'],
   rules: [
     // your custom rules
   ],

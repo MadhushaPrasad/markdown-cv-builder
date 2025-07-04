@@ -1,49 +1,69 @@
-<center>
-<h1>Madhusha Prasad Silva</h1>
+# Madhusha Prasad Silva {.text-4xl .font-bold .text-center .mb-2}
 
-📍 45A, Isurupura Road, Gamunupura, Kothalawala, Kaduwela  
-📞 +94 764727839  
-📧 [madushaprasad21@gmail.com](mailto:madushaprasad21@gmail.com)  
-🌐 [Website](https://madhushaprasad.netlify.app) | [GitHub](https://github.com/MadhushaPrasad) | [LinkedIn](https://www.linkedin.com/in/madhusha-prasad-045a82187)
-</center>
+<div class="text-center text-gray-600 text-sm leading-relaxed space-y-1">
+  <div>📍 45A, Isurupura Road, Gamunupura, Kothalawala, Kaduwela</div>
+  <div>📞 +94 764727839</div>
+  <div>
+    📧 <a href="mailto:madushaprasad21@gmail.com" class="text-blue-600 hover:underline">madushaprasad21@gmail.com</a>
+  </div>
+  <div class="space-x-2">
+    🌐 
+    <a href="https://madhushaprasad.netlify.app" target="_blank" class="text-blue-600 hover:underline">Website</a> •
+    <a href="https://github.com/MadhushaPrasad" target="_blank" class="text-blue-600 hover:underline">GitHub</a> •
+    <a href="https://www.linkedin.com/in/madhusha-prasad-045a82187" target="_blank" class="text-blue-600 hover:underline">LinkedIn</a>
+  </div>
+</div>
 
 ---
 
-## 📝 Summary
+## 📝 Summary {.text-2xl .mt-6 .mb-2 .text-blue-600}
 
+<div class="text-gray-700 leading-relaxed">
 Highly motivated and seasoned full-stack software engineer with over five years of experience crafting scalable web and mobile applications. Strong in full-stack development, UI/UX design, and technical consulting. Passionate about Laravel, MERN stack, Vue.js, and JavaScript frameworks. Always exploring cybersecurity and innovative digital solutions.
+</div>
 
----
+## 💼 Work Experience {.text-2xl .font-semibold .mb-4 .text-blue-600}
 
-## 💼 Work Experience
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-### Full Stack Software Engineer — Livezen Technologies  
-📍 Aug 2024 – Present  
+### Full Stack Software Engineer — Livezen Technologies {.font-bold .text-lg}
+<div class="text-sm text-gray-600">
+📍 Aug 2024
 - Developed "Shop Box" — an eCommerce and business management solution using Laravel + Livewire.
+</div>
 
-### Full Stack Software Engineer — Graytech Digital Solutions  
+### Full Stack Software Engineer — Graytech Digital Solutions {.font-bold .text-lg}
+<div class="text-sm text-gray-600">
 📍 Jun 2023 – Dec 2023  
 - Lift Admin Panel (Flutter)  
 - Corporate Website (Flutter + Golang)
+</div>
 
-### Associate Software Engineer — CodeBrix  
+### Associate Software Engineer — CodeBrix {.font-bold .text-lg}
+<div class="text-sm text-gray-600">
 📍 Nov 2021 – Sep 2022  
 - MyPorter Web (Vue.js + Vuex)  
 - DGImpex Store (React)  
 - Dreamskin Web/Admin (Angular)
+</div>
 
-### Trainee Associate Software Engineer — Sentura Technologies  
+### Trainee Associate Software Engineer — Sentura Technologies {.font-bold .text-lg}
+<div class="text-sm text-gray-600">
 📍 May 2020 – Aug 2020  
 - Patapata.lk Mobile App (React Native)  
 - Online Bookstore Web App (PHP)
+</div>
 
-### Trainee Associate Software Engineer — NeoMinds  
+### Trainee Associate Software Engineer — NeoMinds {.font-bold .text-lg}
+<div class="text-sm text-gray-600">
 📍 Sep 2019 – Mar 2020  
 - Samanal Taxi Desktop App (Java)  
 - Dealz Mobile App (React Native)  
 - Dealz Admin Panel (Angular)
+</div>
 
----
+</div>
+
 
 ## 🎓 Education
 
