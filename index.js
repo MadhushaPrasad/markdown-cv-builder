@@ -4,6 +4,10 @@ import { fileURLToPath } from 'url'
 import puppeteer from 'puppeteer'
 import MarkdownIt from 'markdown-it'
 import markdownItAttrs from 'markdown-it-attrs'
+import { exec } from 'child_process'
+import { promisify } from 'util'
+
+const execAsync = promisify(exec)
 
 // ES module __dirname workaround
 const __filename = fileURLToPath(import.meta.url)
@@ -68,8 +72,30 @@ export async function buildCV({ inputPath, theme = 'index', output = 'resume.pdf
       console.log('⚡ Injected markdown into index.html')
       console.log('👉 Now run: npm run dev (or pnpm run dev) to start Vite dev server')
     } else {
+
+      console.log('🚧 Building UnoCSS styles...')
+      // Run the unocss build command (adjust if your package manager is npm or yarn)
+      await execAsync("pnpm run unocss:build")
+
+
+      // Read the generated CSS
+      const cssPath = path.resolve(__dirname, 'dist/unocss.css')
+      let css = ''
+      if (fs.existsSync(cssPath)) {
+        css = fs.readFileSync(cssPath, 'utf-8')
+      }
+
+      // Remove existing CSS link tags from template (if any)
+      const cleanTemplate = template.replace(/<link[^>]+rel=["']stylesheet["'][^>]*>/g, '')
+
+      // Inject inline CSS before </head>
+      const finalHtml = cleanTemplate.replace(
+        '</head>',
+        `<style>${css}</style></head>`
+      ).replace('{{content}}', htmlContent);
+
+
       // Generate PDF
-      const finalHtml = template.replace('{{content}}', htmlContent)
       const browser = await puppeteer.launch()
       const page = await browser.newPage()
       await page.setContent(finalHtml, { waitUntil: 'networkidle0' })
