@@ -15,35 +15,49 @@ jobs:
         node-version: [18.x, 20.x, 22.x]
 
     steps:
-      # Checkout the code
+      # Step 1: Checkout repo
       - uses: actions/checkout@v4
 
-      # Setup Node.js + PNPM
-      - name: Use Node.js ${{ matrix.node-version }}
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
 
+      # Step 3: Setup PNPM (this adds pnpm to PATH properly)
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 10
+          
+      # Step 4: Restore PNPM cache
+      - name: Get PNPM store directory
+        id: pnpm-cache
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_ENV
 
+      - name: Cache PNPM
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      # Step 5: Install dependencies
       - name: Install dependencies
         run: pnpm install
 
-      # Optional: Lint
+      # Step 6: Lint (optional)
       - name: Run linter (if available)
         run: pnpm lint
         continue-on-error: true
 
-      # Optional: Run tests
+      # Step 7: Test
       - name: Run tests
         run: pnpm test
         continue-on-error: true
 
-      # Optional: Build step
+      # Step 8: Build
       - name: Build project (if needed)
         run: pnpm build
         continue-on-error: true
