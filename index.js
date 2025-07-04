@@ -10,6 +10,21 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const THEMES_DIR = path.join(__dirname, 'themes')
+const INDEX_PATH = path.join(THEMES_DIR, 'index.html')
+const TEMPLATE_CONTENT = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Resume</title>
+  </head>
+  <body class="mx-auto p-8 max-w-screen-md font-sans text-gray-800">
+    <div id="resume">
+      {{content}}
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
+`;
 
 export async function buildCV({ inputPath, theme = 'index', output = 'resume.pdf', serve = false }) {
   console.log('📄 Running markdown-cv-builder...')
@@ -45,7 +60,12 @@ export async function buildCV({ inputPath, theme = 'index', output = 'resume.pdf
       await page.setContent(finalHtml, { waitUntil: 'networkidle0' })
       await page.pdf({ path: output, format: 'A4' })
       await browser.close()
+
+      // ✅ Restore index.html to template after generating
+      fs.writeFileSync(INDEX_PATH, TEMPLATE_CONTENT)
+
       console.log(`✅ PDF generated: ${output}`)
+      console.log('♻️ Restored default template')
     }
   } catch (error) {
     console.error('❌ Error:', error.message)
