@@ -60,6 +60,7 @@ export async function generatePDF(inputPath = 'resume.md', theme = 'index', outp
   ).replace('{{content}}', htmlContent);
 
   // Generate PDF
+  console.log('📄 Generating PDF...');
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.setContent(finalHtml, { waitUntil: 'networkidle0' });
