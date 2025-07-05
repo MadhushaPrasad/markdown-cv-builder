@@ -39,13 +39,13 @@ Export as **PDF**, **PNG**, or **JPEG** — with live preview and hot reloading.
 
 | Command                     | Description                                   |
 | --------------------------- | ----------------------------------------------|
-| **`pnpm start`**            | **Inject markdown and start dev preview**     |
-| **`pnpm run dev`**          | **Start Vite dev server only**                |
-| **`pnpm run inject`**       | **Inject resume into theme**                  |
-| **`pnpm run generate`**     | **Generate a styled PDF**                     |
-| **`pnpm run image:png`**    | **Export PNG of the resume**                  |
-| **`pnpm run image:jpeg`**   | **Export JPEG of the resume**                 |
-| **`pnpm run unocss:build`** | **Manually build UnoCSS styles**              |
+| **`pnpm start`**            | Inject markdown and start dev preview.        |
+| **`pnpm run dev`**          | Start Vite dev server only                    |
+| **`pnpm run inject`**       | Inject resume into theme                      |
+| **`pnpm run generate`**     | Generate a styled PDF                         |
+| **`pnpm run image:png`**    | Export PNG of the resume                      |
+| **`pnpm run image:jpeg`**   | Export JPEG of the resume.                    |
+| **`pnpm run unocss:build`** | Manually build UnoCSS styles                  |
 
 ---
 
