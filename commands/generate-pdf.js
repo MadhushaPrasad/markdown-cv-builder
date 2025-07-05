@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import puppeteer from 'puppeteer';
 import MarkdownIt from 'markdown-it';
 import markdownItAttrs from 'markdown-it-attrs';
@@ -31,7 +32,7 @@ export async function generatePDF(inputPath = 'resume.md', theme = 'index', outp
   const htmlContent = md.render(markdown);
 
   // Use theme if exists, otherwise fallback to template
-  let freshTemplate = TEMPLATE_CONTENT;
+  let freshTemplate = fs.readFileSync(themePath, 'utf-8');
   if (!templateExists) {
     console.warn(`⚠️ Theme '${theme}' not found. Falling back to default theme`);
     themePath = path.join(THEMES_DIR, 'index.html');
@@ -42,14 +43,14 @@ export async function generatePDF(inputPath = 'resume.md', theme = 'index', outp
   await execAsync("pnpm run unocss:build");
 
   // Read the generated CSS
-  const cssPath = path.resolve(__dirname, 'dist/unocss.css');
+  const cssPath = path.resolve(__dirname, '../dist/unocss.css');
   let css = '';
   if (fs.existsSync(cssPath)) {
     css = fs.readFileSync(cssPath, 'utf-8');
   }
 
   // Remove existing CSS link tags from template (if any)
-  const cleanTemplate = template.replace(/<link[^>]+rel=["']stylesheet["'][^>]*>/g, '');
+  const cleanTemplate = freshTemplate.replace(/<link[^>]+rel=["']stylesheet["'][^>]*>/g, '');
 
   // Inject inline CSS before </head>
   const finalHtml = cleanTemplate.replace(
