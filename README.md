@@ -2,6 +2,8 @@
 
 **Generate stylish, modern resumes from Markdown with Vite, UnoCSS, and markdown-it!**
 
+![Resume](https://github.com/user-attachments/assets/08342584-6f07-4cdb-ad46-3505de96a7dd)
+
 ---
 
 ## ✅ Summary: v1 vs v2 Comparison
@@ -34,11 +36,15 @@
 
 ## 🆕 What's New in v2
 
-✅ Replaced `marked` with `markdown-it` for better HTML and attribute support
-✅ Integrated UnoCSS for utility-first styling
-✅ Switched to Vite as frontend bundler and dev server
-✅ Updated CLI: cleaner commands, default theme fallback, and file restoration
-✅ Improved Dev Experience: No manual reloads — just write Markdown and preview instantly
+- ✅ Replaced `marked` with `markdown-it` for better HTML and attribute support
+
+- ✅ Integrated UnoCSS for utility-first styling
+
+- ✅ Switched to Vite as frontend bundler and dev server
+
+- ✅ Updated CLI: cleaner commands, default theme fallback, and file restoration
+
+- ✅ Improved Dev Experience: No manual reloads — just write Markdown and preview instantly
 
 ---
 
