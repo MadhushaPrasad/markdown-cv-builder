@@ -18,7 +18,7 @@ export default function injectResumePlugin({ resumeFile = 'resume.md', theme = '
         }
       });
 
-      // // Inject initially
+      // Inject initially
       // inject();
     },
   }
