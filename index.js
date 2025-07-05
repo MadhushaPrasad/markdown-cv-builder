@@ -4,11 +4,9 @@ import { fileURLToPath } from 'url'
 import puppeteer from 'puppeteer'
 import MarkdownIt from 'markdown-it'
 import markdownItAttrs from 'markdown-it-attrs'
-import { exec } from 'child_process'
-import { promisify } from 'util'
+import { execAsync } from './utils/helpers.js'
 import {TEMPLATE_CONTENT} from './utils/template.js'
 
-const execAsync = promisify(exec)
 
 // ES module __dirname workaround
 const __filename = fileURLToPath(import.meta.url)
