@@ -50,20 +50,6 @@ pnpm install
 npm install
 ```
 
----
-
-## 💻 Usage
-
-### 🖨️ Generate PDF Resume
-
-```bash
-pnpm run generate
-```
-
-This builds a styled `resume.pdf` from your `resume.md` using Puppeteer.
-
----
-
 ### 🌐 Preview Resume in Browser
 
 ```bash
@@ -78,6 +64,18 @@ pnpm start
 ```
 
 The resume will be injected into the `themes/index.html`, and Vite will serve it live on [http://localhost:5173](http://localhost:5173). Changes auto-refresh.
+
+---
+
+## 💻 Usage
+
+### 🖨️ Generate PDF Resume
+
+```bash
+pnpm run generate
+```
+
+This builds a styled `resume.pdf` from your `resume.md` using Puppeteer.
 
 ---
 
@@ -157,6 +155,14 @@ You can use all Tailwind-compatible utilities like:
 ## 🤝 Contributing
 
 Contributions are welcome! Create issues, suggest features, or send PRs. Add new themes, refine CLI logic, or improve styles with UnoCSS.
+
+---
+
+## 🌱 Contributors </br>
+
+<a href="https://github.com/MadhushaPrasad/markdown-cv-builder/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=MadhushaPrasad/markdown-cv-builder" />
+</a>
 
 ---
 
