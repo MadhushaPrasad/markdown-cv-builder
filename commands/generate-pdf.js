@@ -38,9 +38,10 @@ export async function generatePDF(inputPath = 'resume.md', theme = 'index', outp
     themePath = path.join(THEMES_DIR, 'index.html');
     freshTemplate = fs.readFileSync(themePath, 'utf-8');
   }
+
   // Run the unocss build command
   console.log('🚧 Building UnoCSS styles...');
-  await execAsync("pnpm run unocss:build");
+  await execAsync('unocss "./themes/**/*.{html,js}" "./resume.md" --config uno.config.js -o dist/unocss.css');
 
   // Read the generated CSS
   const cssPath = path.resolve(__dirname, '../dist/unocss.css');
