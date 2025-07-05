@@ -1,11 +1,16 @@
-import { defineConfig,presetAttributify, presetWind3 } from 'unocss'
+import { defineConfig, presetAttributify, presetWind3 } from 'unocss';
 
 export default defineConfig({
   presets: [
-    presetAttributify({ /* preset options */}),
+    presetAttributify({ /* preset options */ }),
     presetWind3(),
     // ...custom presets
   ],
+  content: {
+    pipeline: {
+      include: [/\.html$/, /\.js$/, /\.md$/],
+    },
+  },
   include: ['./themes/**/*.html', './resume.md'],
   rules: [
     // your custom rules
