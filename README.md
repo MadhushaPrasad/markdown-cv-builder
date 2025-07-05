@@ -35,6 +35,20 @@ Export as **PDF**, **PNG**, or **JPEG** — with live preview and hot reloading.
 
 ---
 
+## 🛠 Available Commands
+
+| Command                 | Description                           |
+| ----------------------- | ------------------------------------- |
+| `pnpm start`            | Inject markdown and start dev preview |
+| `pnpm run dev`          | Start Vite dev server only            |
+| `pnpm run inject`       | Inject resume into theme              |
+| `pnpm run generate`     | Generate a styled PDF                 |
+| `pnpm run image:png`    | Export PNG of the resume              |
+| `pnpm run image:jpeg`   | Export JPEG of the resume             |
+| `pnpm run unocss:build` | Manually build UnoCSS styles          |
+
+---
+
 ## 📦 Installation
 
 ```bash
@@ -261,5 +275,7 @@ You can help by:
 MIT © [Madhusha Prasad](https://github.com/MadhushaPrasad)
 
 ---
+
+![Tag](https://img.shields.io/badge/-markdown-blue?style=flat-square) ![Tag](https://img.shields.io/badge/-resume-success?style=flat-square) ![Tag](https://img.shields.io/badge/-pdf--generator-red?style=flat-square) ![Tag](https://img.shields.io/badge/-puppeteer-yellow?style=flat-square) ![Tag](https://img.shields.io/badge/-vite-purple?style=flat-square) ![Tag](https://img.shields.io/badge/-unocss-9cf?style=flat-square) ![Tag](https://img.shields.io/badge/-tailwindcss-0ea5e9?style=flat-square) ![Tag](https://img.shields.io/badge/-developer--tools-222?style=flat-square)
 
 *Built with ❤️ using Node.js, Vite, UnoCSS, and markdown-it*
