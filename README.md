@@ -10,11 +10,11 @@ Export as **PDF**, **PNG**, or **JPEG** — with live preview and hot reloading.
 
 ## ✅ Summary: v1 vs v2 Comparison
 
-| Feature              | v1 (Before)              | v2.1 (Now - Vite)                    |
-| -------------------- | ------------------------ | ------------------------------------ |
+| Feature              | v1 (Before)               | v2.1 (Now - Vite)                     |
+| -------------------- | ------------------------  | ------------------------------------- |
 | **Live Preview**     | `nodemon` + Express       | ✅ Vite Dev Server                    |
-| **Hot Reload**       | ❌ Manual refresh         | ✅ Automatic via Vite                 |
-| **Markdown Parsing** | `marked` (basic)          | ✅ `markdown-it` + `markdown-it-attrs` |
+| **Hot Reload**       | ❌ Manual refresh         | ✅ Automatic via Vite                  |
+| **Markdown Parsing** | `marked` (basic)          | ✅ `markdown-it` + `markdown-it-attrs`|
 | **Theme Styling**    | Manual CSS                | ✅ UnoCSS utility-first styling       |
 | **Frontend Build**   | None                      | ✅ Vite bundler                       |
 | **Injection System** | Basic string replace      | ✅ Dynamic + revertible templates     |
@@ -27,25 +27,25 @@ Export as **PDF**, **PNG**, or **JPEG** — with live preview and hot reloading.
 
 `markdown-cv-builder` is a modern toolchain for converting Markdown resumes into responsive, beautifully styled web pages and documents.
 
-✅ Powered by [Vite](https://vitejs.dev)  
-🎨 Styled with [UnoCSS](https://unocss.dev) (Tailwind-compatible)  
-✍️ Uses [markdown-it](https://github.com/markdown-it/markdown-it) for flexible parsing  
-📄 Outputs PDF, PNG, or JPEG via [Puppeteer](https://pptr.dev)  
-♻️ Auto-replaces theme content and restores templates  
+* ✅ Powered by [Vite](https://vitejs.dev)  
+* 🎨 Styled with [UnoCSS](https://unocss.dev) (Tailwind-compatible)  
+* ✍️ Uses [markdown-it](https://github.com/markdown-it/markdown-it) for flexible parsing  
+* 📄 Outputs PDF, PNG, or JPEG via [Puppeteer](https://pptr.dev)  
+* ♻️ Auto-replaces theme content and restores templates  
 
 ---
 
 ## 🛠 Available Commands
 
-| Command                 | Description                           |
-| ----------------------- | ------------------------------------- |
-| `pnpm start`            | Inject markdown and start dev preview |
-| `pnpm run dev`          | Start Vite dev server only            |
-| `pnpm run inject`       | Inject resume into theme              |
-| `pnpm run generate`     | Generate a styled PDF                 |
-| `pnpm run image:png`    | Export PNG of the resume              |
-| `pnpm run image:jpeg`   | Export JPEG of the resume             |
-| `pnpm run unocss:build` | Manually build UnoCSS styles          |
+| Command                     | Description                                   |
+| --------------------------- | ----------------------------------------------|
+| **`pnpm start`**            | Inject markdown and start dev preview.        |
+| **`pnpm run dev`**          | Start Vite dev server only                    |
+| **`pnpm run inject`**       | Inject resume into theme                      |
+| **`pnpm run generate`**     | Generate a styled PDF                         |
+| **`pnpm run image:png`**    | Export PNG of the resume                      |
+| **`pnpm run image:jpeg`**   | Export JPEG of the resume.                    |
+| **`pnpm run unocss:build`** | Manually build UnoCSS styles                  |
 
 ---
 
@@ -72,8 +72,8 @@ Or simply:
 pnpm start
 ```
 
-Opens Vite dev server at [http://localhost:5173](http://localhost:5173).
-Markdown changes reflect automatically with hot reload.
+**Opens Vite dev server at [http://localhost:5173](http://localhost:5173).
+Markdown changes reflect automatically with hot reload.**
 
 ---
 
