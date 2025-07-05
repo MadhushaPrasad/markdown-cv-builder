@@ -1,6 +1,7 @@
 # 📄 Markdown CV Builder — v2.1
 
 **Generate stylish resumes from Markdown with Vite, UnoCSS, and markdown-it!**  
+
 Export as **PDF**, **PNG**, or **JPEG** — with live preview and hot reloading.
 
 ![Preview](https://github.com/user-attachments/assets/08342584-6f07-4cdb-ad46-3505de96a7dd)
@@ -236,6 +237,7 @@ UnoCSS scans:
 ## 🤝 Contributing
 
 Contributions welcome! 🙌
+
 You can help by:
 
 * 🌟 Star this repo
