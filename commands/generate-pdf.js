@@ -6,6 +6,9 @@ import markdownItAttrs from 'markdown-it-attrs';
 import { execAsync } from '../utils/helpers.js';
 import { TEMPLATE_CONTENT } from '../utils/template.js';
 
+// ES module __dirname workaround
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const THEMES_DIR = path.join(process.cwd(), 'themes');
 const INDEX_PATH = path.join(THEMES_DIR, 'index.html');
