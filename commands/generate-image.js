@@ -8,14 +8,13 @@ import { execAsync } from '../utils/helpers.js';
 import { TEMPLATE_CONTENT } from '../utils/template.js';
 
 // ES module __dirname workaround
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const THEMES_DIR = path.join(process.cwd(), 'themes');
 const INDEX_PATH = path.join(THEMES_DIR, 'index.html');
 
-export async function generatePDF(inputPath = 'resume.md', theme = 'index', output = 'resume.pdf') {
-
+export async function generateImage(inputPath = 'resume.md', theme = 'index', format) {
   const resumePath = path.resolve(inputPath);
   const themePath = path.join(THEMES_DIR, `${theme}.html`);
   const templateExists = fs.existsSync(themePath);
@@ -23,7 +22,7 @@ export async function generatePDF(inputPath = 'resume.md', theme = 'index', outp
 
   // check if resume inputPath exists
   if (!resumeExists) {
-    console.error(`⚠️ Resume file '${resumePath}' not found. Please check the path provided.`);
+    console.error(`⚠️ Resume file '${resumePath}' not found.`);
     return;
   }
 
@@ -59,18 +58,24 @@ export async function generatePDF(inputPath = 'resume.md', theme = 'index', outp
     `<style>${css}</style></head>`
   ).replace('{{content}}', htmlContent);
 
-  // Generate PDF
-  console.log('📄 Generating PDF...');
+  // Generate Image
+  console.log('🎨 Generating image...');
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.setContent(finalHtml, { waitUntil: 'networkidle0' });
-  await page.pdf({ path: output, format: 'A4' });
+
+  const outputPath = `resume.${format}`;
+  await page.screenshot({
+    path: outputPath,
+    type: format,
+    fullPage: true,
+    quality: format === 'jpeg' ? 100 : undefined,
+  });
   await browser.close();
 
   // ✅ Restore index.html to template after generating
   fs.writeFileSync(INDEX_PATH, TEMPLATE_CONTENT);
 
-  console.log(`✅ PDF generated: ${output}`);
+  console.log(`✅ ${format.toUpperCase()} image saved: ${outputPath}`);
   console.log('♻️ Restored default template');
 }
-

@@ -9,7 +9,9 @@
     "dev": "vite",
     "build:theme": "vite build",
     "inject": "node index.js resume.md index --serve",
-    "generate": "node index.js resume.md index resume.pdf"
+    "generate": "node index.js resume.md index resume.pdf",
+    "image:png": "node index.js resume.md index resume.png png",
+    "image:jpeg": "node index.js resume.md index resume.jpeg jpeg"
   },
   "keywords": [],
   "author": "",
