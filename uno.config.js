@@ -11,7 +11,6 @@ export default defineConfig({
       include: [/\.html$/, /\.js$/, /\.md$/],
     },
   },
-  include: ['./themes/**/*.html', './resume.md'],
   rules: [
     // your custom rules
   ],
