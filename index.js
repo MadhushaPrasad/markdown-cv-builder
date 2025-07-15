@@ -27,6 +27,14 @@ Options:
 `);
 }
 
+if (
+  process.argv.includes('--help') ||
+  process.argv.includes('-h')
+) {
+  showHelp();
+  process.exit(0);
+}
+
 // CLI Entry Point
 if (process.argv[1].endsWith('index.js') || process.argv[1].endsWith('markdown-cv-builder.js')) {
   const args = process.argv.slice(2);
