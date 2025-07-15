@@ -27,13 +27,6 @@ Options:
 `);
 }
 
-if (
-  process.argv.includes('--help') ||
-  process.argv.includes('-h')
-) {
-  showHelp();
-  process.exit(0);
-}
 
 // CLI Entry Point
 if (process.argv[1].endsWith('index.js') || process.argv[1].endsWith('markdown-cv-builder.js')) {
@@ -43,6 +36,15 @@ if (process.argv[1].endsWith('index.js') || process.argv[1].endsWith('markdown-c
   const output = args[2] || 'resume.pdf';
   const format = args[3] || 'png' || 'jpeg'; // can be 'png', 'jpeg'
   const serve = args.includes('--serve');
+
+  if (
+    args.length === 0 ||
+    args.includes('--help') ||
+    args.includes('-h')
+  ) {
+    showHelp();
+    process.exit(0);
+  }
 
   if (serve) {
     injectMarkDown(inputPath, theme)
