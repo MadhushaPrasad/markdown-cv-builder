@@ -20,7 +20,7 @@
   "description": "",
   "dependencies": {
     "express": "^5.1.0",
-    "markdown-it": "^14.1.0",
+    "markdown-it": "^14.1.1",
     "markdown-it-attrs": "^4.3.1",
     "puppeteer": "^24.11.2"
   },
